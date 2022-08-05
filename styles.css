@@ -1,10 +1,243 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Montserrat&display=swap');
+
 /*Base*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    /* The reason this is a percentage is because it scales much better. This roughly translates to 10px */
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+    font-family: "Montserrat";
+}
+
+a {
+    text-decoration: none;
+    list-style-type: none;
+}
+
+img {
+    max-width: 100%;
+    z-index: 5 !important;
+}
+
 
 /*Utilities*/
 
+.container {
+    max-width: 125rem;
+    margin: 0 auto;
+    /* Padding left and right */
+    padding: 0 1.5rem;
+}
+
+:root {
+    --paragraph-color: #929fc5;
+    --default-background: rgb(59,70,121);
+    --linear-gradient: linear-gradient(180deg, rgba(59,70,121,1) 0%, rgba(43,49,83,1) 50%, rgba(43,49,83,1) 100%);
+    --btn-linear-gradient: linear-gradient(90deg, #FF83D5, #FFCCB0);
+
+}
+
 /*Header & Nav*/
 
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
+.nav {
+    height: 10rem;
+    /* Navs are already block level elements so they automatically take up 100% of the width */
+    display: flex;
+    
+    /* Moves the nav-stuff to the bottom of the container */
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.nav-list {
+    display: flex;
+
+    /* Gets rid of bullet points */
+    list-style: none;
+}
+
+.nav-item {
+    margin-right: 5rem;
+}
+
+.nav-item:last-child {
+    margin-right: 0;
+}
+
+.nav-link {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: white;
+    transition: opacity .3s;
+}
+
+
+
+/* Do this instead of a:hover */
+.nav-link:hover {
+    opacity: .6;
+}
+
+.logo {
+    /* Moves the logo slightly down */
+    display: block;
+    width: 8rem;
+}
+
+
 /*Main content*/
+
+.landing-page {
+    width: 100%;
+
+    /* The min height makes it so that the main content is always filling the screen */
+    min-height: 100vh;
+    background: var(--default-background);
+    background: var(--linear-gradient);
+    /* position: relative; */
+    overflow: hidden;
+
+    /* Centers the landing page to the center of the screen */
+    display: flex;
+    align-items: center;
+}
+
+.landing-page::before {
+    /* So what is this? This is how you set a background that is all over the page */
+    content: "";
+    /* Make the position absolute so it doesn't affect anything else in the document flow */
+    position: absolute;
+    /* Put the top/left values as 0 */
+    top: 0;
+    left: 0;
+    width: inherit;
+    /* Make it span the entire height of the screen */
+    height: 100vh;
+    background-image: url("images/bg-pat.png");
+    /* Make it fill the screen */
+    background-size: cover;
+    opacity: 0.4;
+    /* Make it below the images */
+    z-index: 1;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+
+.content-details {
+    max-width: 80%;
+}
+
+.title {
+    font-size: 6rem;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.description {
+    color: var(--paragraph-color);
+    margin-bottom: 2.5rem;
+}
+
+.content-details, .image-group  {
+    z-index: 5;
+}
+
+/* Styling the email/join button */
+.search input {
+    border: none;
+    border-radius: 5rem;
+    padding: 2rem;
+    outline: none;
+    font-family: "Montserrat";
+}
+
+.search {
+    margin-bottom: 2.5rem;
+}
+
+.search-bar {
+    /* To make the button appear directly on the search bar you do this: */
+    width: calc(100% - .5rem);
+}
+
+.search-box {
+    /* Give any width to the search box and the button will be right there */
+    width: 270px
+}
+
+.search-btn {
+    width: 10rem;
+    background: var(--btn-linear-gradient);
+    color: white;
+    cursor: pointer;
+    margin-left: -10rem;
+}
+
+.search-btn:hover {
+    background: linear-gradient(#FFCCB0, #FF83D5);
+}
+
+.sm-list {
+    display: flex;
+}
+
+.sm-link {
+    /* Styling the social media links */
+    color: #929fc5;
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid #929fc5;
+    border-radius: 50%;
+    /* In order to center the icons in the border (and use the align-items and justify-content you have to make the individual item a flexbox */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* You could theorically select the icons themselves and say margin: auto */
+    margin-right: 2.5rem;
+    transition: color 0.5s;
+    transition-timing-function: ease-out;
+}
+
+.sm-link:hover {
+    background-image: linear-gradient(to right, #A971FF, #00F0FF);
+    color: white;
+}
+
+.image-group {
+    /* Aligns the images even where there is no flexbox/grid */
+    text-align: center;
+    /* This is a very important concept that you have to understand: in order to move the position of an item, it is generally a good idea to make the parent element of the item you want to move a relative position. */
+    position: relative;
+}
+
+.blob-bean {
+    /* Puts the bean on top of the big guy */
+    position: absolute;
+    top: 2.5rem;
+    left: -1rem;
+}
 
 /*Animations*/
 
