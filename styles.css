@@ -126,7 +126,10 @@ header {
     /* Centers the landing page to the center of the screen */
     display: flex;
     align-items: center;
-    overflow: hidden
+    overflow: hidden !important;
+
+    /* This line of css took me an hour. No exaggeration. I hate css so much. FML*/
+    position: relative;
 }
 
 
@@ -277,14 +280,21 @@ header {
 }
 
 .blob-3 {
-    right: 5rem;
-    bottom: -24rem;
+    right: -16rem;
+    bottom: 2rem;
+
 }
 
 .blob-4 {
+
+    
     left: -24rem;
-    bottom: -17rem;
+    bottom: 1rem;
 }
+
+/* .blob-3, .blob-4 {
+    position: static;
+} */
 
 
 
@@ -383,12 +393,20 @@ header {
     .blob-4 {
         display: none;
     }
+
+    .sm-list {
+        margin-bottom: 20px;
+    }
 }
 
 @media screen and (max-width: 700px) {
     .nav {
         flex-direction: column;
         height: 5rem;
+    }
+
+    .nav-list {
+        margin-bottom: 5rem;
     }
 
     .logo {
@@ -401,7 +419,7 @@ header {
 
     .blob-3 {
         width: 50%;
-        bottom: -10rem
+        bottom: -10rem;
     }
 
     .search {
@@ -431,4 +449,9 @@ header {
         padding: 5px;
     }
 }
+
+html {
+    overflow-x: hidden;
+}
+
 
