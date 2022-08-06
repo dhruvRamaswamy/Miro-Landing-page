@@ -26,7 +26,6 @@ a {
 
 img {
     max-width: 100%;
-    z-index: 5 !important;
 }
 
 
@@ -36,16 +35,26 @@ img {
     max-width: 125rem;
     margin: 0 auto;
     /* Padding left and right */
-    padding: 0 1.5rem;
+    padding: 0 5rem;
 }
 
 :root {
     --paragraph-color: #929fc5;
-    --default-background: rgb(59,70,121);
+    --default-background: hsl(229, 34%, 35%);
     --linear-gradient: linear-gradient(180deg, rgba(59,70,121,1) 0%, rgba(43,49,83,1) 50%, rgba(43,49,83,1) 100%);
     --btn-linear-gradient: linear-gradient(90deg, #FF83D5, #FFCCB0);
 
 }
+
+
+.hue-shift {
+    animation: hue-shift 15s infinite alternate ease-in-out;
+}
+
+html {
+    /* overflow: hidden; */
+}
+
 
 /*Header & Nav*/
 
@@ -113,12 +122,13 @@ header {
     background: var(--default-background);
     background: var(--linear-gradient);
     /* position: relative; */
-    overflow: hidden;
 
     /* Centers the landing page to the center of the screen */
     display: flex;
     align-items: center;
+    overflow: hidden
 }
+
 
 .landing-page::before {
     /* So what is this? This is how you set a background that is all over the page */
@@ -188,11 +198,12 @@ header {
 }
 
 .search-btn {
+    display: block;
     width: 10rem;
     background: var(--btn-linear-gradient);
-    color: white;
+    color: white; 
     cursor: pointer;
-    margin-left: -10rem;
+    margin-top: 1.5rem;
 }
 
 .search-btn:hover {
@@ -237,8 +248,187 @@ header {
     position: absolute;
     top: 2.5rem;
     left: -1rem;
+    animation: move-down 2s infinite alternate;
+    width: 20vw;
+    max-width: 20rem;
 }
+
+.blob {
+    position: absolute;
+    z-index: 1 !important;
+}
+
+/* This places all the blobs in there specific places */
+
+.blob-large {
+    /* Alternate means it goes up and down smoothly instead of one way */
+    animation: move-up 2s infinite alternate;
+}
+
+.blob-1 {
+    top: -11rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.blob-2 {
+    top: 15rem;
+    left: -17rem;
+}
+
+.blob-3 {
+    right: 5rem;
+    bottom: -24rem;
+}
+
+.blob-4 {
+    left: -24rem;
+    bottom: -17rem;
+}
+
+
 
 /*Animations*/
 
+@keyframes move-up {
+    from {
+        transform: translateY(0)
+    }
+
+    to {
+        transform: translateY(2rem)
+    }
+
+}
+@keyframes move-down {
+    from {
+        transform: translateY(0)
+    }
+
+    to {
+        transform: translateY(-1rem)
+    }
+}
+
+@keyframes hue-shift {
+    from {
+        filter: hue-rotate(0)
+    }
+
+    to {
+        filter: hue-rotate(360deg)
+    }
+}
+
 /*Media Queries*/
+
+@media screen and (max-width: 786px) {
+    .nav {
+        align-items: center;
+    }
+
+    .content {
+        grid-template-columns: 1fr;
+    }
+
+    .content-details {
+        /* Moves the content details down */
+        order: 1;
+        max-width: 100%;
+        margin-top: 5rem;
+    }
+
+    .title {
+        font-size: 3.5rem;
+    }
+
+    .search-box {
+        width: calc(100% - .5rem);
+    }
+    .description {
+        font-size: 1.4rem;
+    }
+
+    .image-group {
+        margin-top: 10rem
+    }
+
+    .blob-large {
+        width: 70%
+    }
+
+    .blob-bean {
+        width: 30%;
+        left: 10%;
+        top: 10%;
+    }
+
+    .blob-1 {
+        display: none;
+    }
+
+    .blob-2 {
+        left: 30rem;
+        bottom: -1rem;
+        /* The reason  the bottom isn't working is because the top was already set. To counter that, say top: revert*/
+        top: revert;
+        width: 25%;
+    }
+
+    .blob-3 {
+        right: -3rem;
+        bottom: -25rem;
+    }
+
+    .blob-4 {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .nav {
+        flex-direction: column;
+        height: 5rem;
+    }
+
+    .logo {
+        margin: 2rem;
+    }
+
+    .blob-2 {
+        display: none;
+    }
+
+    .blob-3 {
+        width: 50%;
+        bottom: -10rem
+    }
+
+    .search {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .search-btn {
+        position: relative;
+        margin-top: 1.5rem;
+        width: 35%;
+        margin-left: 32.5%;
+        margin-right: 32.5%
+    }
+
+    .container {
+        text-align: center;
+    }
+
+    .sm-list {
+        justify-content: center;
+    }    
+}
+
+@media screen and (max-width: 330px) {
+    .container {
+        padding: 5px;
+    }
+}
+
